@@ -73,9 +73,15 @@ app.get("/", (req, res) => {
   <!DOCTYPE html>
   <html>
   <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sell Your Junk Car</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" 
+/>
+    <title>Get Cash For Your Junk Car</title>
     <style>
+      * {
+        box-sizing: border-box;
+      }
+
       body {
         margin: 0;
         font-family: Arial, sans-serif;
@@ -84,75 +90,88 @@ app.get("/", (req, res) => {
       }
 
       .container {
-        max-width: 700px;
-        margin: auto;
-        padding: 20px;
+        max-width: 760px;
+        margin: 0 auto;
+        padding: 24px;
+      }
+
+      h1 {
+        text-align: center;
+        margin-bottom: 8px;
+      }
+
+      .subtext {
+        text-align: center;
+        margin-bottom: 20px;
       }
 
       .card {
         background: white;
         color: black;
-        padding: 25px;
-        border-radius: 15px;
-        margin-top: 20px;
-        max-height: 80vh;
-        overflow-y: auto;
+        padding: 24px;
+        border-radius: 16px;
         box-shadow: 0 10px 30px rgba(0,0,0,0.2);
       }
 
-      h1 {
-        text-align: center;
-      }
-
       form {
-        display: grid;
+        display: flex;
+        flex-direction: column;
         gap: 12px;
       }
 
-      input, select, textarea {
-        padding: 14px;
-        border-radius: 10px;
-        border: 1px solid #ccc;
-        font-size: 16px;
-        width: 100%;
+      .row {
+        display: flex;
+        gap: 12px;
       }
 
-      button {
-        padding: 15px;
-        background: #16a34a;
-        color: white;
-        border: none;
+      .row > * {
+        flex: 1;
+      }
+
+      input, select, textarea {
+        width: 100%;
+        padding: 14px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+      }
+
+      textarea {
+        min-height: 120px;
+        resize: vertical;
+      }
+
+      .submit-btn {
+        width: 100%;
+        padding: 16px;
         font-size: 18px;
         font-weight: bold;
+        border: none;
         border-radius: 10px;
+        background: #16a34a;
+        color: white;
         cursor: pointer;
       }
 
-      button:hover {
-        opacity: 0.9;
+      .submit-btn:hover {
+        opacity: 0.95;
       }
 
-      .row {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 10px;
-      }
-
-      @media (max-width: 600px) {
+      @media (max-width: 640px) {
         .row {
-          grid-template-columns: 1fr;
+          flex-direction: column;
         }
       }
     </style>
   </head>
-
   <body>
     <div class="container">
       <h1>💰 Get Cash For Your Junk Car</h1>
+      <p class="subtext">Running or not. Fast offer. Same-day pickup 
+available.</p>
 
       <div class="card">
         <form method="POST" action="/lead">
-
           <input name="full_name" placeholder="Full Name" required />
           <input name="phone" placeholder="Phone Number" required />
 
@@ -162,7 +181,6 @@ app.get("/", (req, res) => {
           </div>
 
           <input name="model" placeholder="Model" required />
-
           <input name="mileage" placeholder="Mileage (optional)" />
 
           <select name="condition" required>
@@ -180,29 +198,41 @@ app.get("/", (req, res) => {
             <option>Lien</option>
           </select>
 
-          <h3>📍 Vehicle Location</h3>
-
           <input name="address" placeholder="Street Address" required />
 
           <div class="row">
             <input name="city" placeholder="City" required />
-            <input name="state" value="GA" />
+            <input name="state" value="GA" required />
           </div>
 
           <input name="zipcode" placeholder="ZIP Code" required />
+          <textarea name="notes" placeholder="Extra details (damage, 
+missing parts, etc)"></textarea>
 
-<textarea name="notes" placeholder="Extra details (damage, missing parts, 
-etc)"></textarea>
-
-<button type="submit" class="submit-btn">Get My Cash Offer</button>
-
-</form>
+          <button type="submit" class="submit-btn">Get My Cash 
+Offer</button>
+        </form>
       </div>
     </div>
   </body>
   </html>
   `);
 });
+      
+
+
+  
+
+   
+
+      
+
+      
+    
+            
+            
+          
+   
 
 app.post("/lead", async (req, res) => {
   const lead = req.body;
