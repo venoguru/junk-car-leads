@@ -191,11 +191,12 @@ app.get("/", (req, res) => {
 
           <input name="zipcode" placeholder="ZIP Code" required />
 
-          <textarea name="notes" placeholder="Extra details (damage, missing parts, etc)"></textarea>
+<textarea name="notes" placeholder="Extra details (damage, missing parts, 
+etc)"></textarea>
 
-          <button type="submit">Get My Cash Offer</button>
+<button type="submit" class="submit-btn">Get My Cash Offer</button>
 
-        </form>
+</form>
       </div>
     </div>
   </body>
